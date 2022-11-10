@@ -13,7 +13,7 @@ public final class CdkWorkshopApp {
             
             // create props for second stack
             // CdkContactFlowStackProps props = new CdkContactFlowStackProps(loCdkWorkshopStack.getConnect());
-            CdkContactFlowStack loCdkContactFlowStack = new CdkContactFlowStack(app, "CdkContactFlowStack", null);
+            // CdkContactFlowStack loCdkContactFlowStack = new CdkContactFlowStack(app, "CdkContactFlowStack", null);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

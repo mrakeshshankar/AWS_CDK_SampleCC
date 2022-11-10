@@ -33,20 +33,20 @@ public class CdkWorkshopStack extends Stack {
                 SampleBusinessHoursOfOperations hop = new SampleBusinessHoursOfOperations(this, "SampleBusinessHoursOfOperation", connect);
 
                 // List queues
-                new ListQueueCustomResource(this, "ListQueueCustomResource", connect, null);
+                // new ListQueueCustomResource(this, "ListQueueCustomResource", connect, null);
 
                 // create a reservation queue.
-                 QueueCustomResource queue = new QueueCustomResource(this, "QueueCustomResource", connect, hop.getHoursOfOperation());
+                QueueCustomResource queue = new QueueCustomResource(this, "QueueCustomResource", connect, hop.getHoursOfOperation());
 
                 // Create Routing Profile
                 new RoutingProfileCustomResource(this, "RoutingProfileCustomResource", connect, queue.getQueueID());
 
                 // Add Connect flow to the intance
-                CfnContactFlow cfnContactFlow = new SampleConnectFlow(this, "SampleConnectFlow", connect, "src/resources/flows/SampleUDARN.json", queue.getQueueArn()).getInstance();
+                CfnContactFlow cfnContactFlow = new SampleConnectFlow(this, "SampleConnectFlow", connect, "src/resources/flows/SampleFlowWithQueueReference.json", queue.getQueueArn()).getInstance();
                 
 
                 // Add Connect flow2 to the intance
-                //CfnContactFlow cfnContactFlow1 = new SampleConnectFlow(this, "SampleConnectFlowLatest1", connect, "src/resources/flows/SampleFlow1.json").getInstance();
+                // CfnContactFlow cfnContactFlow1 = new SampleConnectFlow(this, "SampleConnectFlowLatest1", connect, "src/resources/flows/SampleFlow1.json", queue.getQueueArn()).getInstance();
 
 
                 // Claim a phone number
@@ -54,8 +54,8 @@ public class CdkWorkshopStack extends Stack {
                                 connect).getInstance();
 
                 // Claim a phone number2
-                // CfnPhoneNumber phoneNumber1 = new SampleContactCenterPhoneNumber(this, "SampleContactCenterPhoneNumber1",
-                //                  connect).getInstance();
+                CfnPhoneNumber phoneNumber1 = new SampleContactCenterPhoneNumber(this, "SampleContactCenterPhoneNumber1",
+                                 connect).getInstance();
 
 
                 // Associate Phone number with the Sample flow
