@@ -1,0 +1,285 @@
+{
+    "Version": "2019-10-30",
+    "StartAction": "749b9657-3be1-4193-a44c-94dfa2639b11",
+    "Metadata": {
+        "entryPointPosition": {
+            "x": 40,
+            "y": 40
+        },
+        "ActionMetadata": {
+            "749b9657-3be1-4193-a44c-94dfa2639b11": {
+                "position": {
+                    "x": 187.20000000000002,
+                    "y": 38.400000000000006
+                }
+            },
+            "79a0e661-a49a-4e6f-9e5c-c1464ba2e12f": {
+                "position": {
+                    "x": 405.6,
+                    "y": 180
+                },
+                "overrideConsoleVoice": false
+            },
+            "4ad41ce9-98e2-44e3-8067-35bd6a8b05e7": {
+                "position": {
+                    "x": 638.4000000000001,
+                    "y": 31.200000000000003
+                }
+            },
+            "a39db972-5a5e-4f80-9f82-02598aa02030": {
+                "position": {
+                    "x": 115.2,
+                    "y": 180.8
+                },
+                "conditionMetadata": [
+                    {
+                        "id": "e297584c-2b1f-4913-bbbe-b827e1b187d9",
+                        "value": "1"
+                    },
+                    {
+                        "id": "e6d6727c-00ae-4dad-9c37-ab94a08b23b8",
+                        "value": "2"
+                    }
+                ]
+            },
+            "eb9465ab-f042-48c0-9efb-ef01cc76e0c3": {
+                "position": {
+                    "x": 738.4000000000001,
+                    "y": 331.20000000000005
+                }
+            },
+            "8dc29078-f234-40b6-a527-2412e82659d7": {
+                "position": {
+                    "x": 400,
+                    "y": 443.20000000000005
+                }
+            },
+            "b1fecb61-d36e-4881-a105-9503acc4db1c": {
+                "position": {
+                    "x": 531.2,
+                    "y": 301.6
+                }
+            },
+            "54a4ec0e-94c5-419a-935b-8a3132646748": {
+                "position": {
+                    "x": 1194.4,
+                    "y": 206.4
+                }
+            },
+            "cdf40ecb-f0e9-49cd-9cd6-847ae2862661": {
+                "position": {
+                    "x": 1219.2,
+                    "y": 333.6
+                }
+            },
+            "245302aa-71ef-41e1-89c4-f1bf77e844f2": {
+                "position": {
+                    "x": 1000.8000000000001,
+                    "y": 321.6
+                },
+                "conditionMetadata": [
+                    {
+                        "id": "36732443-fdef-4e76-b18f-2cae4ae9ec00",
+                        "value": "1"
+                    }
+                ]
+            }
+        },
+        "name": "SampleConnectFlow",
+        "description": "Sample Contact Center flow",
+        "type": "contactFlow",
+        "status": "published",
+        "hash": {}
+    },
+    "Actions": [
+        {
+            "Parameters": {
+                "FlowLoggingBehavior": "Enabled"
+            },
+            "Identifier": "749b9657-3be1-4193-a44c-94dfa2639b11",
+            "Type": "UpdateFlowLoggingBehavior",
+            "Transitions": {
+                "NextAction": "79a0e661-a49a-4e6f-9e5c-c1464ba2e12f"
+            }
+        },
+        {
+            "Parameters": {
+                "TextToSpeechVoice": "Joanna"
+            },
+            "Identifier": "79a0e661-a49a-4e6f-9e5c-c1464ba2e12f",
+            "Type": "UpdateContactTextToSpeechVoice",
+            "Transitions": {
+                "NextAction": "4ad41ce9-98e2-44e3-8067-35bd6a8b05e7"
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "Welcome to American  Airlines."
+            },
+            "Identifier": "4ad41ce9-98e2-44e3-8067-35bd6a8b05e7",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "a39db972-5a5e-4f80-9f82-02598aa02030",
+                "Errors": [
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "StoreInput": "False",
+                "InputTimeLimitSeconds": "5",
+                "Text": "Press 1 for booking.\n2 for support"
+            },
+            "Identifier": "a39db972-5a5e-4f80-9f82-02598aa02030",
+            "Type": "GetParticipantInput",
+            "Transitions": {
+                "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                "Conditions": [
+                    {
+                        "NextAction": "8dc29078-f234-40b6-a527-2412e82659d7",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "1"
+                            ]
+                        }
+                    },
+                    {
+                        "NextAction": "b1fecb61-d36e-4881-a105-9503acc4db1c",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "2"
+                            ]
+                        }
+                    }
+                ],
+                "Errors": [
+                    {
+                        "NextAction": "eb9465ab-f042-48c0-9efb-ef01cc76e0c3",
+                        "ErrorType": "InputTimeLimitExceeded"
+                    },
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingCondition"
+                    },
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "Please choose an Option"
+            },
+            "Identifier": "eb9465ab-f042-48c0-9efb-ef01cc76e0c3",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "a39db972-5a5e-4f80-9f82-02598aa02030",
+                "Errors": [
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "You have selected booking. Let me transfer you to an agent."
+            },
+            "Identifier": "8dc29078-f234-40b6-a527-2412e82659d7",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "245302aa-71ef-41e1-89c4-f1bf77e844f2",
+                "Errors": [
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "Text": "You want to talk to an support person. Let me transfer you."
+            },
+            "Identifier": "b1fecb61-d36e-4881-a105-9503acc4db1c",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "245302aa-71ef-41e1-89c4-f1bf77e844f2",
+                "Errors": [
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {},
+            "Identifier": "54a4ec0e-94c5-419a-935b-8a3132646748",
+            "Type": "DisconnectParticipant",
+            "Transitions": {}
+        },
+        {
+            "Parameters": {
+                "Text": "Thanks. Expect a call from us shortly"
+            },
+            "Identifier": "cdf40ecb-f0e9-49cd-9cd6-847ae2862661",
+            "Type": "MessageParticipant",
+            "Transitions": {
+                "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                "Errors": [
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        },
+        {
+            "Parameters": {
+                "StoreInput": "False",
+                "InputTimeLimitSeconds": "10",
+                "Text": "All our agents are currently assisting other customer. You can stay on the call or press one to get a call back."
+            },
+            "Identifier": "245302aa-71ef-41e1-89c4-f1bf77e844f2",
+            "Type": "GetParticipantInput",
+            "Transitions": {
+                "NextAction": "cdf40ecb-f0e9-49cd-9cd6-847ae2862661",
+                "Conditions": [
+                    {
+                        "NextAction": "cdf40ecb-f0e9-49cd-9cd6-847ae2862661",
+                        "Condition": {
+                            "Operator": "Equals",
+                            "Operands": [
+                                "1"
+                            ]
+                        }
+                    }
+                ],
+                "Errors": [
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "InputTimeLimitExceeded"
+                    },
+                    {
+                        "NextAction": "cdf40ecb-f0e9-49cd-9cd6-847ae2862661",
+                        "ErrorType": "NoMatchingCondition"
+                    },
+                    {
+                        "NextAction": "54a4ec0e-94c5-419a-935b-8a3132646748",
+                        "ErrorType": "NoMatchingError"
+                    }
+                ]
+            }
+        }
+    ]
+}
